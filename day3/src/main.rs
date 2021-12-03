@@ -74,8 +74,7 @@ fn main() {
                 '0'
             }
         });
-        println!("{}", oxygen_generator_rating);
-        println!("{}", co2_scrubber_rating);
+
         println!("{}", oxygen_generator_rating * co2_scrubber_rating);
     }
 }
