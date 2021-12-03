@@ -37,8 +37,8 @@ fn extract_rating(readings: &[String], digit_selector: impl Fn((i32, i32)) -> ch
     )
 }
 
-fn main() {
-    if let Ok(lines) = common::read_lines("day3/input.txt") {
+pub fn solve(filename: &str) -> (i32, i32) {
+    if let Ok(lines) = common::read_lines(filename) {
         let readings: Vec<String> = lines.filter_map(|line| line.ok()).collect();
 
         let position_bits = (0..readings[0].len())
@@ -58,7 +58,6 @@ fn main() {
 
         let gamma_rate = parse_binary_string(&gamma_rate.iter().collect::<String>());
         let epsilon_rate = parse_binary_string(&epsilon_rate.iter().collect::<String>());
-        println!("{}", gamma_rate * epsilon_rate);
 
         let oxygen_generator_rating = extract_rating(&readings, |(zeros, ones)| -> char {
             if zeros > ones {
@@ -75,6 +74,24 @@ fn main() {
             }
         });
 
-        println!("{}", oxygen_generator_rating * co2_scrubber_rating);
+        return (
+            gamma_rate * epsilon_rate,
+            oxygen_generator_rating * co2_scrubber_rating,
+        );
+    }
+    (0, 0)
+}
+
+fn main() {
+    println!("{:?}", solve("day3/input.txt"));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!((198, 230), solve("test_input.txt"));
     }
 }
