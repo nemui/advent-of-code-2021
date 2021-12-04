@@ -10,6 +10,13 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
+pub fn list_of_numbers<T: AsRef<str>>(line: T, separator: char) -> Vec<i32> {
+    line.as_ref()
+        .split(separator)
+        .filter_map(|line| line.parse::<i32>().ok())
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
