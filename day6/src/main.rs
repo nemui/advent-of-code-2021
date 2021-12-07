@@ -1,9 +1,14 @@
 pub fn solve_1(filename: &str) -> usize {
     if let Ok(mut lines) = common::read_lines(filename) {
+<<<<<<< HEAD
         return multiply_fish(
             common::list_of_numbers(lines.next().unwrap().unwrap(), ','),
             80,
         );
+=======
+        let fish = common::list_of_numbers(lines.next().unwrap().unwrap(), ',');
+        return fish.len() as u32;
+>>>>>>> 823657044d1c742834f2959a50b8ed01e14bf7a5
     }
     0
 }
